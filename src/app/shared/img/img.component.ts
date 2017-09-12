@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ImageStyleConfig } from 'app/shared/imageConfig';
+import { EnvironmentService } from 'app/shared/environment.service';
 
 @Component({
     selector: 'csc-img',
@@ -18,20 +18,21 @@ export class ImgComponent implements OnInit {
     @ViewChild('container') container: ElementRef;
     private loaded = false;
 
-    constructor(private _sanitizer: DomSanitizer) { }
+    constructor(private _renderer: Renderer2, private _environment: EnvironmentService) { }
 
     ngOnInit() {
         this.initStyles();
-        this.initObserver();
+        if (this._environment.isBrowser) {
+            this.initObserver();
+        }
     }
 
     private initStyles(): void {
         if (this.width !== 0 && this.height !== 0) {
-            this.img.nativeElement.style.position = 'absolute';
+            this.setStyles({ 'position': 'absolute' }, this.img);
         }
         const containerStyle = {
-            'padding-top': (this.height / this.width * 100) + '%',
-            'background': this.getUrl()
+            'padding-top': (this.height / this.width * 100) + '%'
         };
         this.setStyles(containerStyle, this.container);
 
@@ -65,11 +66,11 @@ export class ImgComponent implements OnInit {
     private setStyles(styles = {}, element: ElementRef): void {
         Object.keys(styles).forEach(key => {
             const style = styles[key];
-            element.nativeElement.style[key] = styles[key];
+            this._renderer.setStyle(element.nativeElement, key, styles[key]);
         });
     }
 
-    private getUrl(): string {
-        return this.data !== undefined ? `url('${this.data}')` : '';
+    public getUrl(): string {
+        return this.data !== undefined ? `url(${this.data})` : '';
     }
 }

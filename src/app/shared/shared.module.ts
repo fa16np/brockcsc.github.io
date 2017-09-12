@@ -14,6 +14,7 @@ import { UploadExistingComponent } from './upload/upload-existing/upload-existin
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImgComponent } from './img/img.component';
+import { EnvironmentService } from './environment.service';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import { ImgComponent } from './img/img.component';
         EventApiService,
         ExecApiService,
         StorageService,
-        FoodApiService
+        FoodApiService,
+        EnvironmentService
     ]
 })
 export class SharedModule { }

@@ -5,17 +5,20 @@ import { StorageService } from '../storage/storage.service';
 import { Thenable, Promise } from 'firebase';
 import { Query } from 'angularfire2/interfaces';
 import 'rxjs/add/operator/map';
+import { EnvironmentService } from 'app/shared/environment.service';
 
 @Injectable()
 export class EventApiService {
     events: FirebaseListObservable<Event[]>;
     _path: string;
 
-    constructor(private _db: AngularFireDatabase, private _storageService: StorageService) {
+    constructor(private _db: AngularFireDatabase, private _storageService: StorageService, private _environment: EnvironmentService) {
         this._path = '/event';
-        this.events = this.queryEvent({
-            orderByChild: 'datetime/timeStartTimestamp'
-        });
+        if (this._environment.isBrowser) {
+            this.events = this.queryEvent({
+                orderByChild: 'datetime/timeStartTimestamp'
+            });
+        }
     }
 
     public getNextEvent(): FirebaseListObservable<Event> {

@@ -3,6 +3,7 @@ import { Event, EventApiService } from 'app/shared/api';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { ImageConfig, ImageStyleConfig } from 'app/shared/imageConfig';
 import { HomeImageConfigs } from './imageConfigs';
+import { EnvironmentService } from 'app/shared/environment.service';
 
 @Component({
     selector: 'csc-home',
@@ -22,19 +23,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
     heroStyleConfig: ImageStyleConfig;
 
 
-    constructor(private _eventApi: EventApiService) { }
+    constructor(
+        private _eventApi: EventApiService,
+        private _environment: EnvironmentService) { }
 
     ngOnInit() {
         this.initEvents();
         this.initServices();
-        this._eventApi.getNextEvent().subscribe(event => {
-            this.nextEvent = event;
-        });
+        if (this._environment.isBrowser) {
+            this._eventApi.getNextEvent().subscribe(event => {
+                this.nextEvent = event;
+            });
+        }
         this.initHeroConfig();
     }
 
+
     async ngAfterViewInit() {
-        await this.loadScript('//platform.twitter.com/widgets.js');
+        if (this._environment.isBrowser) {
+            await this.loadScript('//platform.twitter.com/widgets.js');
+        }
     }
 
     public initEvents(): void {

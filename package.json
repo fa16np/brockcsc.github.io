@@ -11,7 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pwa": "./node_modules/.bin/sw-precache --root=dist --config=precache-config.js"
+    "pwa": "./node_modules/.bin/sw-precache --root=dist --config=precache-config.js",
+    "ssr": "ng build --prod && webpack --config webpack.config.server.js && node dist/server.js"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "@angular/http": "^4.3.6",
     "@angular/platform-browser": "^4.3.6",
     "@angular/platform-browser-dynamic": "^4.3.6",
+    "@angular/platform-server": "^4.3.6",
     "@angular/router": "^4.3.6",
     "angularfire2": "^4.0.0-rc.2",
     "core-js": "^2.5.1",
