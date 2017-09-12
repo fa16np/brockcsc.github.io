@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, Injectable, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import Popper from 'popper.js';
+import { EnvironmentService } from 'app/shared/environment.service';
 
 @Component({
-  selector: 'csc-tooltip',
-  templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss']
+    selector: 'csc-tooltip',
+    templateUrl: './tooltip.component.html',
+    styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipComponent implements AfterViewInit {
 
@@ -20,21 +21,23 @@ export class TooltipComponent implements AfterViewInit {
     private _$tooltipArrow: any;
     private _popper: Popper;
 
-    constructor(@Inject(DOCUMENT) private document: Document) {}
+    constructor( @Inject(DOCUMENT) private document: Document, private _environment: EnvironmentService) { }
 
     ngAfterViewInit() {
-        this._$tooltip = this.tooltip.nativeElement;
-        this._$tooltipArrow = this.tooltipArrow.nativeElement;
+        if (this._environment.isBrowser) {
+            this._$tooltip = this.tooltip.nativeElement;
+            this._$tooltipArrow = this.tooltipArrow.nativeElement;
 
-        this._host = this.document.getElementById(this.forId);
+            this._host = this.document.getElementById(this.forId);
 
-        if (!this._host) {
-            console.error('Tooltip: No host element found. Make sure id and forId exist and match on host element and tooltip');
-            return;
+            if (!this._host) {
+                console.error('Tooltip: No host element found. Make sure id and forId exist and match on host element and tooltip');
+                return;
+            }
+
+            this._host.addEventListener('mouseover', this.showToolTip);
+            this._host.addEventListener('mouseout', this.hideToolTip);
         }
-
-        this._host.addEventListener('mouseover', this.showToolTip);
-        this._host.addEventListener('mouseout', this.hideToolTip);
     }
 
     public showToolTip = (_: any) => {
