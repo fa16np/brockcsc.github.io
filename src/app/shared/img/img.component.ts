@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ImageStyleConfig } from 'app/shared/imageConfig';
 
@@ -7,7 +7,7 @@ import { ImageStyleConfig } from 'app/shared/imageConfig';
     templateUrl: './img.component.html',
     styleUrls: ['./img.component.scss']
 })
-export class ImgComponent implements OnInit {
+export class ImgComponent implements OnInit, AfterViewInit {
     @Input() src;
     @Input() data;
     @Input() width = 0;
@@ -21,6 +21,10 @@ export class ImgComponent implements OnInit {
     constructor(private _sanitizer: DomSanitizer) { }
 
     ngOnInit() {
+ 
+    }
+
+    ngAfterViewInit() {
         this.initStyles();
         this.initObserver();
     }
