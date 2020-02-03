@@ -1,6 +1,5 @@
-<csc-input-container>
-    <input #fieldName />
-</csc-input-container>
-<csc-input-container>
-    <input #fieldValue />
-</csc-input-container>
+<csc-prominent-container title="Text Field">
+    <csc-input-container label="Option name" class="col-12" labelLocation="top">
+        <input [(ngModel)]="text.description" />
+    </csc-input-container>
+</csc-prominent-container>

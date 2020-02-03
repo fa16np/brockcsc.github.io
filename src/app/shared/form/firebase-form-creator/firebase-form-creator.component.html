@@ -1,3 +1,24 @@
-<p>firebase-form-creator works!</p>
-<csc-text-field-creator></csc-text-field-creator>
-<csc-radio-creator></csc-radio-creator>
+<div style="padding: 10px;">
+    <div *ngFor="let field of formInfo.fields">
+        <csc-text-field-creator *ngIf="isTextInput(field)" [(text)]="field">
+        </csc-text-field-creator>
+        <csc-radio-creator *ngIf="isRadioInput(field)" [(radio)]="field">
+        </csc-radio-creator>
+        <csc-checkbox-creator
+            *ngIf="isCheckboxInput(field)"
+            [(checkbox)]="field"
+        >
+        </csc-checkbox-creator>
+    </div>
+    <csc-prominent-container title="Add new field">
+        <csc-input-container>
+            <select [(ngModel)]="selectedNewFieldType">
+                <option *ngFor="let type of fieldTypes" [value]="type">
+                    {{ type }}
+                </option>
+            </select>
+        </csc-input-container>
+        <button csc-button (click)="addNewField()">Add</button>
+        {{ formInfo | json }}
+    </csc-prominent-container>
+</div>

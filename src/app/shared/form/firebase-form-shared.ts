@@ -7,12 +7,10 @@ export interface Field {
 
 export interface TextInput extends Field {
     type: FieldType.text;
-    value: string;
 }
 
 export interface RadioInput extends Field {
     type: FieldType.radio;
-    value: string;
     options: RadioOption[];
 }
 
@@ -22,7 +20,6 @@ export interface RadioOption {
 
 export interface CheckboxInput extends Field {
     type: FieldType.checkbox;
-    value: boolean;
 }
 
 export interface FormInfo {
@@ -30,7 +27,7 @@ export interface FormInfo {
 }
 
 export enum FieldType {
-    text,
-    radio,
-    checkbox,
+    text = 'Text',
+    radio = 'Radio',
+    checkbox = 'Checkbox',
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CheckboxInput, FieldType } from './../firebase-form-shared';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'csc-checkbox-creator',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckboxCreatorComponent implements OnInit {
 
-  constructor() { }
+  @Input() checkbox: CheckboxInput = {
+    type: FieldType.checkbox,
+    description: '',
+    name: '',
+    required: false,
+  };
+  @Output() checkboxChange: EventEmitter<CheckboxInput> = new EventEmitter();;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

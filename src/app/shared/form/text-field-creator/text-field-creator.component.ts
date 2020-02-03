@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, Input, EventEmitter } from '@angular/core';
+import { FieldType, TextInput } from '../firebase-form-shared';
 
 @Component({
   selector: 'csc-text-field-creator',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TextFieldCreatorComponent implements OnInit {
 
-  constructor() { }
+  @Input() text: TextInput = {
+    name: 'idk',
+    description: 'Idk',
+    type: FieldType.text,
+    required: false,
+  };
+  @Output() textChange: EventEmitter<TextInput> = new EventEmitter();
 
   ngOnInit() {
   }
-
 }

@@ -1,1 +1,20 @@
-<p>radio-creator works!</p>
+<csc-prominent-container title="Radio">
+    <csc-input-container label="Description" class="col-12" labelLocation="top">
+        <input [(ngModel)]="radio.description" />
+    </csc-input-container>
+
+    <csc-input-container label="Options" class="col-12" labelLocation="top">
+        <ol>
+            <li *ngFor="let option of radio.options">
+                {{ option.name }}
+                <button csc-button (click)="deleteOption(option)">
+                    Remove
+                </button>
+            </li>
+        </ol>
+        <csc-input-container label="Option name" labelLocation="top">
+            <input [(ngModel)]="newOptionName" />
+            <button csc-button (click)="addOption()">Add option</button>
+        </csc-input-container>
+    </csc-input-container>
+</csc-prominent-container>

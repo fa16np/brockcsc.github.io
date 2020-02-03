@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { RadioInput, FieldType, RadioOption } from './../firebase-form-shared';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'csc-radio-creator',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RadioCreatorComponent implements OnInit {
 
-  constructor() { }
+  @Input() radio: RadioInput = {
+    type: FieldType.radio,
+    description: '',
+    options: [],
+    name: 'The name is bond, Names Bond',
+    required: false,
+  };
+  @Output() radioChange: EventEmitter<RadioInput> = new EventEmitter();
+  newOptionName: string;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  addOption() {
+    this.radio.options.push({ name: this.newOptionName });
+    this.newOptionName = '';
+  }
+
+  deleteOption(option: RadioOption) {
+    this.radio.options.forEach((value, index) => {
+      if (value.name === option.name) {
+        this.radio.options.splice(index, 1);
+        return;
+      }
+    });
+  }
 }
