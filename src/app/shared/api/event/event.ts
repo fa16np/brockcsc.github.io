@@ -1,3 +1,4 @@
+import { FormInfo } from './../../form/firebase-form-shared';
 import { CscFile } from '../storage/cscFile';
 export class Event {
     $key: string;
@@ -15,4 +16,5 @@ export class Event {
         timeStartTimestamp: number;
         timeEndTimestamp: number;
     };
+    eventForm: FormInfo;
 }
