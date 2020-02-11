@@ -39,6 +39,11 @@
                         </csc-input-container>
                     </div>
                     <div class="row">
+                        <csc-input-container label="Sign up form" class="col-12" labelLocation="top">
+                            <csc-firebase-form-creator [(formInfo)]="eventForm"></csc-firebase-form-creator>
+                        </csc-input-container>
+                    </div>
+                    <div class="row">
                         <csc-input-container label="Upload Image" class="col-6" labelLocation="top">
                             <csc-upload formControlName="image" message="Drag event image here"></csc-upload>
                         </csc-input-container>

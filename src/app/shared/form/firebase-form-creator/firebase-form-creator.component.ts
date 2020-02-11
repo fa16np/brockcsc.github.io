@@ -13,25 +13,35 @@ export class FirebaseFormCreatorComponent implements OnInit {
 
   @Input() formInfo: FormInfo = { fields: [] };
   @Output() formInfoChange: EventEmitter<FormInfo> = new EventEmitter<FormInfo>();
-  fieldTypes = Object.values(FieldType);
+  fieldTypes = [FieldType.checkbox, FieldType.radio, FieldType.text];
   selectedNewFieldType;
   constructor() { }
 
   ngOnInit() { }
+
+  makeId(length): string {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
 
   addRadioField() {
     this.formInfo.fields.push({
       type: FieldType.radio,
       description: '',
       options: [],
-      name: 'The name is bond, Names Bond',
+      name: this.makeId(5),
       required: false,
     } as RadioInput);
   }
 
   addTextField() {
     this.formInfo.fields.push({
-      name: 'idk',
+      name: this.makeId(5),
       description: 'Idk',
       type: FieldType.text,
       required: false,
@@ -42,7 +52,7 @@ export class FirebaseFormCreatorComponent implements OnInit {
     this.formInfo.fields.push({
       type: FieldType.checkbox,
       description: '',
-      name: '',
+      name: this.makeId(5),
       required: false,
     } as CheckboxInput);
   }

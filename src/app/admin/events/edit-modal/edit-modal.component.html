@@ -38,8 +38,8 @@
                             <input class="csc-input" type="text" formControlName="signupUrl" placeholder="https://docs.google.com/forms/d/...">
                         </csc-input-container>
                     </div>
-                    <div class="row">
-                        <csc-firebase-form-creator></csc-firebase-form-creator>
+                    <div class="row" *ngIf="editableEvent!! && editableEvent.eventForm!!">
+                        <csc-firebase-form-creator [(formInfo)]="editableEvent.eventForm"></csc-firebase-form-creator>
                     </div>
                     <div class="row">
                         <csc-input-container label="Image" class="col-6" labelLocation="top">
