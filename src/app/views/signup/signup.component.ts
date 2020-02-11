@@ -13,8 +13,8 @@ export class SignupComponent {
     public slackInviteFormConfig: SlackSignUpGoogleFormConfig;
     public submitted: boolean;
 
-    @ViewChild('signupForm', { static: false }) signupForm;
-    @ViewChild('slackInviteForm', { static: false }) slackInviteForm;
+    @ViewChild('signupForm') signupForm;
+    @ViewChild('slackInviteForm') slackInviteForm;
 
     constructor(private _formBuilder: FormBuilder) {
         this.submitted = false;

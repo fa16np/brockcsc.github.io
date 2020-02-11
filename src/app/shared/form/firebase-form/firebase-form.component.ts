@@ -25,7 +25,7 @@ export class FirebaseFormComponent implements OnInit, AfterViewInit, OnChanges {
     this.initForm();
   }
 
-  @ViewChild('formElement', { static: false }) formElement;
+  @ViewChild('formElement') formElement;
   submitted = false;
 
   constructor(private _formBuilder: FormBuilder) {

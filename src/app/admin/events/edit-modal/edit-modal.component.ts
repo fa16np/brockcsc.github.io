@@ -12,7 +12,7 @@ import { ModalComponent } from 'app/shared/modal/modal.component';
 export class EditModalComponent implements OnInit {
     public form: FormGroup;
     public editableEvent: Event;
-    @ViewChild('modal', {static: false}) modal: ModalComponent;
+    @ViewChild('modal') modal: ModalComponent;
 
     constructor(private _eventApiService: EventApiService, private _formBuilder: FormBuilder) { }
 

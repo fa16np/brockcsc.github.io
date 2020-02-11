@@ -8,7 +8,7 @@ import { GUID } from 'app/shared/guid';
 })
 export class CheckboxComponent implements OnInit, AfterViewInit {
     @Input() label = null;
-    @ViewChild('checkbox', { static: false }) inputParent: ElementRef;
+    @ViewChild('checkbox') inputParent: ElementRef;
     public _id: string = GUID.newGuid();
     public _defaultLabel = '&#8203;'; // no whitespace empty character
     public input: HTMLInputElement;

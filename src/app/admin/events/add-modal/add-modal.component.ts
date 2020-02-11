@@ -12,7 +12,7 @@ import { ModalComponent } from 'app/shared/modal/modal.component';
 })
 export class AddModalComponent implements OnInit {
     public form: FormGroup;
-    @ViewChild('modal', { static: false }) modal: ModalComponent;
+    @ViewChild('modal') modal: ModalComponent;
     eventForm: FormInfo = { fields: [] };
 
     constructor(private _eventApiService: EventApiService, private _formBuilder: FormBuilder) { }
