@@ -1,12 +1,12 @@
 <div style="padding: 10px;">
-    <div *ngFor="let field of formInfo.fields">
-        <csc-text-field-creator *ngIf="isTextInput(field)" [(text)]="field">
+    <div *ngFor="let field of formInfo.fields; let i = index;">
+        <csc-text-field-creator *ngIf="isTextInput(field)" [text]="field">
         </csc-text-field-creator>
-        <csc-radio-creator *ngIf="isRadioInput(field)" [(radio)]="field">
+        <csc-radio-creator *ngIf="isRadioInput(field)" [radio]="field">
         </csc-radio-creator>
         <csc-checkbox-creator
             *ngIf="isCheckboxInput(field)"
-            [(checkbox)]="field"
+            [checkbox]="field"
         >
         </csc-checkbox-creator>
     </div>
@@ -20,4 +20,5 @@
         </csc-input-container>
         <button csc-button (click)="addNewField()">Add</button>
     </csc-prominent-container>
+    {{ formInfo | json }}
 </div>

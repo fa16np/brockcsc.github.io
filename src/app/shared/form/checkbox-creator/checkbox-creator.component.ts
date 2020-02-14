@@ -14,7 +14,7 @@ export class CheckboxCreatorComponent implements OnInit {
     name: '',
     required: false,
   };
-  @Output() checkboxChange: EventEmitter<CheckboxInput> = new EventEmitter();;
+  @Output() checkboxChange: EventEmitter<CheckboxInput> = new EventEmitter();
 
   constructor() {
   }
