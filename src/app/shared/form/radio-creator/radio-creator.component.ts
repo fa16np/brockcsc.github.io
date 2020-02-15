@@ -1,4 +1,4 @@
-import { RadioInput, FieldType, RadioOption } from './../firebase-form-shared';
+import { RadioInput, FieldType, RadioOption } from '../../api/form/firebase-form-shared';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({

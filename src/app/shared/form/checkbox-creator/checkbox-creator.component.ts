@@ -1,4 +1,4 @@
-import { CheckboxInput, FieldType } from './../firebase-form-shared';
+import { CheckboxInput, FieldType } from '../../api/form/firebase-form-shared';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({

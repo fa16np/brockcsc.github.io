@@ -1,5 +1,5 @@
-import { FieldType, RadioInput, CheckboxInput, TextInput, Field } from './../firebase-form-shared';
-import { FormInfo } from '../firebase-form-shared';
+import {FieldType, RadioInput, CheckboxInput, TextInput, Field, randomUid} from '../../api/form/firebase-form-shared';
+import { FormInfo } from '../../api/form/firebase-form-shared';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
@@ -20,13 +20,7 @@ export class FirebaseFormCreatorComponent implements OnInit {
   ngOnInit() { }
 
   makeId(length): string {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+      return randomUid(length);
   }
 
   addRadioField() {

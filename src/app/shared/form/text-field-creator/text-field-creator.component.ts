@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, ViewChild, Input, EventEmitter } from '@angular/core';
-import { FieldType, TextInput } from '../firebase-form-shared';
+import { FieldType, TextInput } from '../../api/form/firebase-form-shared';
 
 @Component({
   selector: 'csc-text-field-creator',

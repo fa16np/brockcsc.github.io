@@ -1,46 +1,53 @@
-<div>
-    <form
-        #formElement
-        class="row csc-contact-form"
-        target="no-target"
-        [formGroup]="form"
-    >
-        <h3 class="col-12 hide-mobile">Sign Up</h3>
-        <div *ngFor="let field of formInfo.fields | anyCast">
-            <csc-input-container *ngIf="isTextInput(field)">
-                <input
-                    [formControlName]="field.name"
-                    class="csc-input"
-                    type="text"
-                    [placeholder]="field.name"
-                />
-                <span
-                    class="error"
-                    *ngIf="
+<div *ngIf="formId">
+    <div *ngIf="submitted">
+        Your response has been recorded!
+    </div>
+    <csc-spinner *ngIf="!formInfo || (submitting && !submitted)"></csc-spinner>
+    <div *ngIf="!!formInfo && !submitted">
+        <form
+            #formElement
+            class="row csc-contact-form"
+            target="no-target"
+            [formGroup]="form"
+        >
+            <h3 class="col-12 hide-mobile">Sign Up</h3>
+            <div *ngFor="let field of formInfo.fields | anyCast">
+                <csc-input-container *ngIf="isTextInput(field)">
+                    <input
+                        [formControlName]="field.name"
+                        class="csc-input"
+                        type="text"
+                        [placeholder]="field.name"
+                    />
+                    <span
+                        class="error"
+                        *ngIf="
                         !form.controls[field.name].valid &&
                         (form.controls[field.name].touched || submitted)
                     "
-                >
+                    >
                     Required field
                 </span>
-            </csc-input-container>
+                </csc-input-container>
 
-            <csc-input-container *ngIf="isCheckboxInput(field)">
-                <csc-checkbox>
-                    <input type="checkbox" [formControlName]="field.name" />
-                </csc-checkbox>
-            </csc-input-container>
+                <csc-input-container *ngIf="isCheckboxInput(field)">
+                    <csc-checkbox>
+                        <input type="checkbox" [formControlName]="field.name"/>
+                    </csc-checkbox>
+                </csc-input-container>
 
-            <csc-input-container *ngIf="isRadioInput(field)">
-                <select [name]="" [formControlName]="field.name">
-                    <option
-                        *ngFor="let option of field.options"
-                        value="options.name"
+                <csc-input-container *ngIf="isRadioInput(field)">
+                    <select [name]="" [formControlName]="field.name">
+                        <option
+                            *ngFor="let option of field.options"
+                            value="options.name"
                         >{{ option.name }}</option
-                    >
-                </select>
-            </csc-input-container>
-        </div>
-        <p>Form Status: {{ form.value | json }}</p>
-    </form>
+                        >
+                    </select>
+                </csc-input-container>
+            </div>
+            <button csc-button (click)="submitForm()">Submit</button>
+            <!--<p>Form Status: {{ form.value | json }}</p>-->
+        </form>
+    </div>
 </div>

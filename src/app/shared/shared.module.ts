@@ -24,7 +24,7 @@ import { RadioCreatorComponent } from './form/radio-creator/radio-creator.compon
 import { TextFieldCreatorComponent } from './form/text-field-creator/text-field-creator.component';
 import { CheckboxCreatorComponent } from './form/checkbox-creator/checkbox-creator.component';
 import { ProminentContainerComponent } from './prominent-container/prominent-container.component';
-
+import { EventViewComponent } from './event-view/event-view.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -50,6 +50,7 @@ import { ProminentContainerComponent } from './prominent-container/prominent-con
         SlideComponent,
         FirebaseFormComponent,
         FirebaseFormCreatorComponent,
+        EventViewComponent
     ],
     declarations: [
         ButtonComponent,
@@ -74,6 +75,7 @@ import { ProminentContainerComponent } from './prominent-container/prominent-con
         CheckboxCreatorComponent,
         FirebaseFormCreatorComponent,
         ProminentContainerComponent,
+        EventViewComponent,
     ],
     providers: [
         EventApiService,
