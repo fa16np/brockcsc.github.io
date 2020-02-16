@@ -27,7 +27,7 @@ export class FormResponsesComponent implements OnInit {
             this.entries = _entries;
             this.setMaxCol();
         });
-        this._formApiService.getForm(this.formId).valueChanges().subscribe(value => {
+        this._formApiService.getForm(this.formId).subscribe(value => {
             value.fields.forEach(field => {
                 this.descriptions[field.name] = field.description;
             });

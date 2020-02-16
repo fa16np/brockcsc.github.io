@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireList, AngularFireObject, QueryFn} from '@angular/fire/database';
-import {FormInfo, randomUid} from './form';
-import {take} from 'rxjs/operators';
-import {Observable, Subscribable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList, AngularFireObject, QueryFn } from '@angular/fire/database';
+import { FormInfo, randomUid, emptyForm } from './form';
+import { take, map } from 'rxjs/operators';
+import { Observable, Subscribable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +19,7 @@ export class FormApiService {
     }
 
     setForm(formInfo: FormInfo, formId: string = randomUid(10)) {
-        console.log({formId: formId, formInfo: formInfo});
+        console.log({ formId: formId, formInfo: formInfo });
         return this.forms.set(formId, formInfo);
     }
 
@@ -27,12 +27,18 @@ export class FormApiService {
         return this._db.list(`${this._entryPath}/${formId}/`).push(entry);
     }
 
-    getForm(formId: string): AngularFireObject<FormInfo> {
+    private getFormObject(formId: string): AngularFireObject<FormInfo> {
         return this._db.object(`${this._formPath}/${formId}`);
     }
 
+    getForm(formId: string): Subscribable<FormInfo> {
+        return this.getFormObject(formId).valueChanges().pipe(
+            map(value => !value ? emptyForm() : value));
+    }
+
     getFormOnce(formId: string): Subscribable<FormInfo> {
-        return this.getForm(formId).valueChanges().pipe(take(1));
+        return this.getFormObject(formId).valueChanges().pipe(take(1)).pipe(
+            map(value => !value ? emptyForm() : value));
     }
 
     getAllEntries(formId: string): Observable<any[]> {

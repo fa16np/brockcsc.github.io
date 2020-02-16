@@ -1,10 +1,10 @@
 import {Observable, Subscribable} from 'rxjs';
 import {map, take} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireList, AngularFireObject, QueryFn} from '@angular/fire/database';
+import {AngularFireDatabase, AngularFireList, QueryFn} from '@angular/fire/database';
 import {Event} from './event';
-import {StorageService} from '..';
 import {listWithKeys, objectWithKeys} from '../util';
+import { StorageService } from '../storage/storage.service';
 
 
 @Injectable()

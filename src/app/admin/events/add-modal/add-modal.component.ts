@@ -1,10 +1,10 @@
-import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/form';
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventApiService} from 'app/shared/api';
-import {Event} from 'app/shared/api';
-import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
-import {ModalComponent} from 'app/shared/modal/modal.component';
-import {FormApiService} from '../../../shared/api/form/form-api.service';
+import { emptyForm, FormInfo, randomUid } from '../../../shared/api/form/form';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EventApiService } from 'app/shared/api';
+import { Event } from 'app/shared/api';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ModalComponent } from 'app/shared/modal/modal.component';
+import { FormApiService } from '../../../shared/api/form/form-api.service';
 
 @Component({
     selector: 'csc-add-modal',
@@ -14,8 +14,8 @@ import {FormApiService} from '../../../shared/api/form/form-api.service';
 export class AddModalComponent implements OnInit {
     public form: FormGroup;
     @ViewChild('modal') modal: ModalComponent;
-    eventForm: FormInfo = {fields: []};
-    includeForm = emptyForm;
+    eventForm: FormInfo = emptyForm();
+    includeForm = true;
 
     constructor(private _eventApiService: EventApiService, private _formBuilder: FormBuilder, private _formApiService: FormApiService) {
     }
@@ -39,6 +39,9 @@ export class AddModalComponent implements OnInit {
 
     public add(): void {
         const val = this.form.value as Event;
+        if (this.eventForm.fields.length === 0) {
+            this.includeForm = false;
+        }
         if (this.includeForm) {
             val.formId = randomUid(10);
             this._formApiService.setForm(this.eventForm, val.formId);

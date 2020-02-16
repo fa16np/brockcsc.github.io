@@ -31,7 +31,7 @@ export class FirebaseFormComponent implements OnInit, AfterViewInit, OnChanges {
         this.formInfo.fields.forEach((field) => {
             let value: any = '';
             if (field.type === FieldType.checkbox) {
-                value = 'false';
+                value = false;
             }
             const validators = [];
             if (field.required) {

@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventApiService} from 'app/shared/api';
-import {Event, CscFile} from 'app/shared/api';
-import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
-import {ModalComponent} from 'app/shared/modal/modal.component';
-import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/form';
-import {FormApiService} from '../../../shared/api/form/form-api.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EventApiService } from 'app/shared/api';
+import { Event, CscFile } from 'app/shared/api';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { ModalComponent } from 'app/shared/modal/modal.component';
+import { emptyForm, FormInfo, randomUid } from '../../../shared/api/form/form';
+import { FormApiService } from '../../../shared/api/form/form-api.service';
 
 @Component({
     selector: 'csc-edit-modal',
@@ -27,7 +27,7 @@ export class EditModalComponent implements OnInit {
         this.includeForm = !!event.formId;
         this.form.patchValue(this.editableEvent);
         if (event.formId) {
-            this._formApiService.getForm(this.editableEvent.formId).valueChanges().subscribe(
+            this._formApiService.getFormOnce(this.editableEvent.formId).subscribe(
                 (value: FormInfo) => {
                     this.eventForm = value;
                 }
@@ -58,6 +58,9 @@ export class EditModalComponent implements OnInit {
         const data = this.form.value;
         data.datetime.timeStartTimestamp = new Date(`${data.datetime.date} ${data.datetime.timeStart}`).valueOf();
         data.datetime.timeEndTimestamp = new Date(`${data.datetime.date} ${data.datetime.timeEnd}`).valueOf();
+        if (this.eventForm.fields.length === 0) {
+            this.includeForm = false;
+        }
         if (!this.includeForm) {
             // Disassociate the form from event, but stays in db.
             data.formId = null;
