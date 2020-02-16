@@ -1,9 +1,10 @@
-import { FormInfo } from './../../../shared/form/firebase-form-shared';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { EventApiService } from 'app/shared/api';
-import { Event } from 'app/shared/api';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { ModalComponent } from 'app/shared/modal/modal.component';
+import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/firebase-form-shared';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {EventApiService} from 'app/shared/api';
+import {Event} from 'app/shared/api';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import {ModalComponent} from 'app/shared/modal/modal.component';
+import {FormApiService} from '../../../shared/api/form/form-api.service';
 
 @Component({
     selector: 'csc-add-modal',
@@ -13,9 +14,11 @@ import { ModalComponent } from 'app/shared/modal/modal.component';
 export class AddModalComponent implements OnInit {
     public form: FormGroup;
     @ViewChild('modal') modal: ModalComponent;
-    eventForm: FormInfo = { fields: [] };
+    eventForm: FormInfo = {fields: []};
+    includeForm = emptyForm;
 
-    constructor(private _eventApiService: EventApiService, private _formBuilder: FormBuilder) { }
+    constructor(private _eventApiService: EventApiService, private _formBuilder: FormBuilder, private _formApiService: FormApiService) {
+    }
 
     public ngOnInit(): void {
         this.form = this._formBuilder.group({
@@ -36,10 +39,12 @@ export class AddModalComponent implements OnInit {
 
     public add(): void {
         const val = this.form.value as Event;
-        val.eventForm = this.eventForm;
+        if (this.includeForm) {
+            val.formId = randomUid(10);
+            this._formApiService.setForm(this.eventForm, val.formId);
+        }
         val.datetime.timeStartTimestamp = new Date(`${val.datetime.date} ${val.datetime.timeStart}`).valueOf();
         val.datetime.timeEndTimestamp = new Date(`${val.datetime.date} ${val.datetime.timeEnd}`).valueOf();
-        console.log(val);
         this._eventApiService.addEvent(val).then((res) => {
             this.modal.close();
             this.form.reset();

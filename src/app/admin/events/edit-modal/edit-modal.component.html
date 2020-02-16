@@ -38,8 +38,15 @@
                             <input class="csc-input" type="text" formControlName="signupUrl" placeholder="https://docs.google.com/forms/d/...">
                         </csc-input-container>
                     </div>
-                    <div class="row" *ngIf="editableEvent!! && editableEvent.eventForm!!">
-                        <csc-firebase-form-creator [(formInfo)]="editableEvent.eventForm"></csc-firebase-form-creator>
+                    <div class="row">
+                        <csc-checkbox label="Include form">
+                            <input type="checkbox" [(ngModel)]="includeForm" [ngModelOptions]="{standalone: true}">>
+                        </csc-checkbox>
+                    </div>
+                    <div class="row" *ngIf="includeForm">
+                        <csc-prominent-container title="Sign up form">
+                            <csc-firebase-form-creator [(formInfo)]="eventForm"></csc-firebase-form-creator>
+                        </csc-prominent-container>
                     </div>
                     <div class="row">
                         <csc-input-container label="Image" class="col-6" labelLocation="top">
