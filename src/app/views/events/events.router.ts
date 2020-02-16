@@ -9,7 +9,6 @@ const routes: Routes = [
         path: '', component: EventsComponent, children: [
             { path: '', component: EventsHomeComponent },
             { path: ':id', component: EventComponent },
-            { path: ':id/signup', component: EventFormComponent },
             { path: '**', redirectTo: '' },
         ]
     }

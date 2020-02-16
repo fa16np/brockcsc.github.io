@@ -1,5 +1,9 @@
-<csc-prominent-container title="Text Field">
-    <csc-input-container label="Option name" class="col-12" labelLocation="top">
-        <input [(ngModel)]="text.description" />
-    </csc-input-container>
-</csc-prominent-container>
+<csc-input-container label="Required" labelLocation="left">
+    <csc-checkbox>
+        <input type="checkbox" [(ngModel)]="text.required">
+    </csc-checkbox>
+</csc-input-container>
+<csc-input-container label="Option name" class="col-12" labelLocation="top">
+    <input type="text" [(ngModel)]="text.description">
+</csc-input-container>
+

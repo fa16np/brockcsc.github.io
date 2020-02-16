@@ -41,3 +41,37 @@ export const randomUid = (length: number) => {
     }
     return result;
 };
+
+export const emptyForm = () => {
+    return {fields: []};
+};
+
+export const emptyTextInput = () => {
+    return {
+        type: FieldType.text,
+        name: randomUid(10),
+        description: '',
+        required: false,
+    };
+};
+
+
+export const emptyRadioInput = () => {
+    return {
+        type: FieldType.radio,
+        name: randomUid(10),
+        description: '',
+        required: false,
+        options: []
+    };
+};
+
+
+export const emptyCheckboxInput = () => {
+    return {
+        type: FieldType.checkbox,
+        name: randomUid(10),
+        description: '',
+        required: false,
+    };
+};

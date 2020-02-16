@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject, QueryFn} from '@angular/fire/database';
-import {FormInfo, randomUid} from './firebase-form-shared';
+import {FormInfo, randomUid} from './form';
 import {take} from 'rxjs/operators';
 import {Observable, Subscribable} from 'rxjs';
 
@@ -19,6 +19,7 @@ export class FormApiService {
     }
 
     setForm(formInfo: FormInfo, formId: string = randomUid(10)) {
+        console.log({formId: formId, formInfo: formInfo});
         return this.forms.set(formId, formInfo);
     }
 

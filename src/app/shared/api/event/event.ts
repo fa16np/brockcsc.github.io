@@ -1,4 +1,4 @@
-import { FormInfo } from '../form/firebase-form-shared';
+import { FormInfo } from '../form/form';
 import { CscFile } from '../storage/cscFile';
 export class Event {
     $key: string;

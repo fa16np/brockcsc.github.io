@@ -35,6 +35,6 @@ import { CommonModule } from '@angular/common';
     ],
     exports: [
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

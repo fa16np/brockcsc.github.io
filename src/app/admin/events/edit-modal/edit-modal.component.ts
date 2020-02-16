@@ -3,7 +3,7 @@ import {EventApiService} from 'app/shared/api';
 import {Event, CscFile} from 'app/shared/api';
 import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
 import {ModalComponent} from 'app/shared/modal/modal.component';
-import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/firebase-form-shared';
+import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/form';
 import {FormApiService} from '../../../shared/api/form/form-api.service';
 
 @Component({
@@ -63,15 +63,18 @@ export class EditModalComponent implements OnInit {
             data.formId = null;
         } else {
             if (!this.editableEvent.formId) {
+                console.log('Not form id');
                 data.formId = randomUid(10);
+            } else {
+                data.formId = this.editableEvent.formId;
             }
+            console.log(`Updating ${data.formId}`);
             this._formApiService.setForm(this.eventForm, data.formId)
                 .catch((error: Error) => {
                     console.log('Error updating form');
                     console.error(error);
                 });
         }
-
 
         this._eventApiService.updateEvent(key, data)
             .then(() => {

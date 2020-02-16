@@ -50,7 +50,8 @@ import { EventViewComponent } from './event-view/event-view.component';
         SlideComponent,
         FirebaseFormComponent,
         FirebaseFormCreatorComponent,
-        EventViewComponent
+        EventViewComponent,
+        ProminentContainerComponent,
     ],
     declarations: [
         ButtonComponent,

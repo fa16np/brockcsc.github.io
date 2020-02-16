@@ -1,4 +1,4 @@
-import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/firebase-form-shared';
+import {emptyForm, FormInfo, randomUid} from '../../../shared/api/form/form';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {EventApiService} from 'app/shared/api';
 import {Event} from 'app/shared/api';
