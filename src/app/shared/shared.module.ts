@@ -15,8 +15,6 @@ import { UploadExistingComponent } from './upload/upload-existing/upload-existin
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImgComponent } from './img/img.component';
-import { SlideshowComponent } from './slideshow/slideshow.component';
-import { SlideComponent } from './slideshow/slides/slide.component';
 import { FirebaseFormComponent } from './form/firebase-form/firebase-form.component';
 import { AnyCastPipe } from './any-cast.pipe';
 import { FirebaseFormCreatorComponent } from './form/firebase-form-creator/firebase-form-creator.component';
@@ -46,8 +44,6 @@ import { EventViewComponent } from './event-view/event-view.component';
         TooltipComponent,
         SpinnerComponent,
         ImgComponent,
-        SlideshowComponent,
-        SlideComponent,
         FirebaseFormComponent,
         FirebaseFormCreatorComponent,
         EventViewComponent,
@@ -66,8 +62,6 @@ import { EventViewComponent } from './event-view/event-view.component';
         TooltipComponent,
         SpinnerComponent,
         ImgComponent,
-        SlideshowComponent,
-        SlideComponent,
         FirebaseFormComponent,
         AnyCastPipe,
         FirebaseFormCreatorComponent,

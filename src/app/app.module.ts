@@ -13,6 +13,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { CommonModule } from '@angular/common';
+import {MatCarouselModule} from '@ngmodule/material-carousel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -32,6 +34,8 @@ import { CommonModule } from '@angular/common';
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
+        MatCarouselModule.forRoot(),
+        BrowserAnimationsModule,
     ],
     exports: [
     ],

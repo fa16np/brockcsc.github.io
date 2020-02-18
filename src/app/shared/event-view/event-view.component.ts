@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {CscEvent} from '../api';
 
 @Component({
     selector: 'csc-event-view',
@@ -6,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
     styleUrls: ['./event-view.component.scss']
 })
 export class EventViewComponent implements OnInit {
-    @Input() event;
+    @Input() event: CscEvent;
 
     constructor() {
     }
